@@ -17,12 +17,14 @@ class CityFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: CityViewModel
+    private lateinit var cityAdapter: CityListAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_city, container, false)
         recyclerView = view.findViewById(R.id.city_list_view)
+        val cityAdapter = CityListAdapter()
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
@@ -30,20 +32,17 @@ class CityFragment : Fragment() {
             swipeRefreshLayout.isRefreshing = false
         }
 
-        return view
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CityViewModel::class.java)
         viewModel.cities.observe(viewLifecycleOwner, Observer { weatherData ->
-            val cityAdapter = CityListAdapter()
             cityAdapter.setData(weatherData.sortedWith(
                 compareBy<WeatherData> { it.city.name }.thenBy { it.date }))
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.adapter = cityAdapter
         })
+
+        viewModel.refreshData()
+
+        return view
     }
 }
 

@@ -40,6 +40,5 @@ class WeatherDetailsFragment : Fragment() {
             else -> temp
         }
         textViewTemputure.text = String.format("%.2f", celsiusTemp)
-
     }
 }

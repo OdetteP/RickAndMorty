@@ -2,8 +2,8 @@ package com.example.myapplication.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.Api.WeatherApi
-import com.example.myapplication.Models.WeatherData
+import com.example.myapplication.data.WeatherApi
+import com.example.myapplication.model.WeatherData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

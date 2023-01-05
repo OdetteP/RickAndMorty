@@ -1,9 +1,8 @@
-package com.example.myapplication.Api
+package com.example.myapplication.data
 
-import com.example.myapplication.Models.WeatherData
+import com.example.myapplication.model.WeatherData
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
 
 interface WeatherApi {
     @GET("weather")

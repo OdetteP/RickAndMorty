@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.myapplication.Models.WeatherData
+import com.example.myapplication.model.WeatherData
 import com.example.myapplication.R
 
 class CityFragment : Fragment() {

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.Models.WeatherData
+import com.example.myapplication.model.WeatherData
 import com.example.myapplication.R
 
 class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {

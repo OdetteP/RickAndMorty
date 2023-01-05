@@ -3,6 +3,7 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myapplication.ui.main.*
+import com.example.myapplication.R
 
 class MainActivity : AppCompatActivity() {
 

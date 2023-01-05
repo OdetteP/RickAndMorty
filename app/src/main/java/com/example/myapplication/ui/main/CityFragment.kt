@@ -10,24 +10,24 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.myapplication.Models.WeatherData
 import com.example.myapplication.R
 
 class CityFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: CityViewModel
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_city, container, false)
         recyclerView = view.findViewById(R.id.city_list_view)
 
-        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.refreshData()
+            swipeRefreshLayout.isRefreshing = false
         }
 
         return view
@@ -39,7 +39,8 @@ class CityFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(CityViewModel::class.java)
         viewModel.cities.observe(viewLifecycleOwner, Observer { weatherData ->
             val cityAdapter = CityListAdapter()
-            cityAdapter.setData(weatherData.sortedBy { it.city.name })
+            cityAdapter.setData(weatherData.sortedWith(
+                compareBy<WeatherData> { it.city.name }.thenBy { it.date }))
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.adapter = cityAdapter
         })

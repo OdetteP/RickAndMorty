@@ -1,9 +1,13 @@
 package com.example.myapplication.ui.main
 
+import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.Api.WeatherApi
 import com.example.myapplication.Models.WeatherData
+import okhttp3.Cache
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,5 +38,6 @@ class CityViewModel : ViewModel() {
                 // Handle the error.
             }
         })
+
     }
 }

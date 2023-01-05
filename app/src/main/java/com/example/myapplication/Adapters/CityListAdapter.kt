@@ -23,20 +23,18 @@ class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {
         return cities.size
     }
 
-//    override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
-//        val city = cities[position]
-//        holder.textViewCityName.text = city.city.name
-//    }
-
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         val city = cities[position]
         holder.textViewCityName.text = city.city.name
+        holder.textViewDate.text = city.date
 
         holder.itemView.setOnClickListener {
             val fragment = WeatherDetailsFragment()
             val bundle = Bundle()
             bundle.putString("CITY_NAME", city.city.name)
             bundle.putString("CITY_PICTURE", city.city.picture)
+            bundle.putString("CITY_TEMP_TYPE", city.tempType)
+            bundle.putDouble("CITY_TEMP", city.temp)
             fragment.arguments = bundle
             val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
@@ -53,5 +51,6 @@ class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {
 
 class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textViewCityName: TextView = itemView.findViewById(R.id.text_view_city_name)
+    val textViewDate: TextView = itemView.findViewById(R.id.text_view_date)
 }
 

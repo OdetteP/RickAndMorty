@@ -1,55 +1,56 @@
 package com.example.myapplication.ui.main
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.api.models.Episodes
 import com.example.myapplication.R
-import com.example.myapplication.api.models.ResultData
+import com.example.myapplication.api.models.EpisodeData
 
-class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {
-    private val cities = mutableListOf<ResultData>()
+class EpisodeListAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
+    private val episodes = mutableListOf<EpisodeData>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item_row, parent, false)
-        return CityViewHolder(view)
+        return EpisodeViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return cities.size
+        return episodes.size
     }
 
-    override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
-        val city = cities[position]
-        holder.textViewName.text = city.name
-        holder.textViewAirDate.text = city.air_date
-        holder.textViewCode.text = city.episode
+    override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
+        val episode = episodes[position]
+        holder.textViewName.text = episode.name
+        holder.textViewAirDate.text = episode.air_date
 
-//        holder.itemView.setOnClickListener {
-//            val fragment = WeatherDetailsFragment()
-//            val bundle = Bundle()
-//            bundle.putString("CITY_NAME", city.city.name)
-//            bundle.putString("CITY_PICTURE", city.city.picture)
-//            bundle.putString("CITY_TEMP_TYPE", city.tempType)
-//            bundle.putDouble("CITY_TEMP", city.temp)
-//            fragment.arguments = bundle
-//            val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
-//            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
-//        }
+//        holder.textViewAirDate.text = String.format("%td/%tm/%tY", episode.air_date)
+        holder.textViewCode.text = episode.episode
+
+        holder.itemView.setOnClickListener {
+            val fragment = CharactersFragment()
+            val bundle = Bundle()
+            bundle.putStringArrayList("CHARACTERS", episode.characters)
+            fragment.arguments = bundle
+            val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(cities: Episodes) {
-        this.cities.clear()
-        this.cities.addAll(cities.results)
+    fun setData(episodes: Episodes) {
+        this.episodes.clear()
+        this.episodes.addAll(episodes.results)
         notifyDataSetChanged()
     }
 }
 
-class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val textViewName: TextView = itemView.findViewById(R.id.text_view_name)
     val textViewAirDate: TextView = itemView.findViewById(R.id.text_view_air_date)
     val textViewCode: TextView = itemView.findViewById(R.id.text_view_code)

@@ -9,26 +9,23 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myapplication.R
 
 class EpisodesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: EpisodesViewModel
-    private lateinit var cityAdapter: CityListAdapter
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_episodes, container, false)
         recyclerView = view.findViewById(R.id.city_list_view)
-        val cityAdapter = CityListAdapter()
+        val episodeAdapter = EpisodeListAdapter()
 
         viewModel = ViewModelProvider(this).get(EpisodesViewModel::class.java)
-        viewModel.episodes.observe(viewLifecycleOwner, Observer { weatherData ->
-            cityAdapter.setData(weatherData)
+        viewModel.episodes.observe(viewLifecycleOwner, Observer { episodeData ->
+            episodeAdapter.setData(episodeData)
             recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = cityAdapter
+            recyclerView.adapter = episodeAdapter
         })
 
         viewModel.refreshData()

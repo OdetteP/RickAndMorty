@@ -10,11 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.myapplication.model.WeatherData
+import com.example.myapplication.model.Episodes
 import com.example.myapplication.R
 
 class CityFragment : Fragment() {
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: CityViewModel
     private lateinit var cityAdapter: CityListAdapter
@@ -34,8 +33,7 @@ class CityFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(CityViewModel::class.java)
         viewModel.cities.observe(viewLifecycleOwner, Observer { weatherData ->
-            cityAdapter.setData(weatherData.sortedWith(
-                compareBy<WeatherData> { it.city.name }.thenBy { it.date }))
+            cityAdapter.setData(weatherData)
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.adapter = cityAdapter
         })

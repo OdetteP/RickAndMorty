@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.model.Episodes
+import com.example.myapplication.api.models.Episodes
 import com.example.myapplication.R
-import com.example.myapplication.model.ResultData
+import com.example.myapplication.api.models.ResultData
 
 class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {
     private val cities = mutableListOf<ResultData>()
@@ -24,8 +24,9 @@ class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         val city = cities[position]
-        holder.textViewCityName.text = city.name
-        holder.textViewDate.text = city.air_date
+        holder.textViewName.text = city.name
+        holder.textViewAirDate.text = city.air_date
+        holder.textViewCode.text = city.episode
 
 //        holder.itemView.setOnClickListener {
 //            val fragment = WeatherDetailsFragment()
@@ -49,7 +50,8 @@ class CityListAdapter : RecyclerView.Adapter<CityViewHolder>() {
 }
 
 class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val textViewCityName: TextView = itemView.findViewById(R.id.text_view_city_name)
-    val textViewDate: TextView = itemView.findViewById(R.id.text_view_date)
+    val textViewName: TextView = itemView.findViewById(R.id.text_view_name)
+    val textViewAirDate: TextView = itemView.findViewById(R.id.text_view_air_date)
+    val textViewCode: TextView = itemView.findViewById(R.id.text_view_code)
 }
 

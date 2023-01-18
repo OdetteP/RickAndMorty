@@ -3,34 +3,34 @@ package com.example.myapplication.ui.main
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.data.WeatherApi
-import com.example.myapplication.model.Episodes
+import com.example.myapplication.api.EpisodeApi
+import com.example.myapplication.api.models.Episodes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class CityViewModel : ViewModel() {
+class EpisodesViewModel : ViewModel() {
 
-    private val weatherApi = Retrofit.Builder()
+    private val episodeApi = Retrofit.Builder()
         .baseUrl("https://rickandmortyapi.com/api/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(WeatherApi::class.java)
+        .create(EpisodeApi::class.java)
 
-    val cities = MutableLiveData<Episodes>()
+    val episodes = MutableLiveData<Episodes>()
 
     fun refreshData() {
         Log.d("Odette", "refreshData" )
-        val call = weatherApi.getCities()
+        val call = episodeApi.getEpisode()
         call.enqueue(object : Callback<Episodes> {
             override fun onResponse(
                 call: Call<Episodes>,
                 response: Response<Episodes>
             ) {
                 Log.d("Odette", "Respons " + response.body())
-                cities.value = response.body()
+                episodes.value = response.body()
             }
 
             override fun onFailure(call: Call<Episodes>, t: Throwable) {

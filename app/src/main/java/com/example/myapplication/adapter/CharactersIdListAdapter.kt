@@ -9,8 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.api.models.CharacterData
-import com.example.myapplication.api.models.Characters
 
 class CharactersListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
     private val characters = mutableListOf<String>()
@@ -29,7 +27,7 @@ class CharactersListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
         holder.textViewName.text = character
 
         holder.itemView.setOnClickListener {
-            val fragment = DetailPage()
+            val fragment = CharacterDetailPage()
             val bundle = Bundle()
             bundle.putInt("CHARACTER_ID", character.toInt())
             fragment.arguments = bundle

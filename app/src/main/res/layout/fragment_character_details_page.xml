@@ -20,13 +20,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_view_city_name"
+            android:id="@+id/text_view_name"
             android:paddingEnd="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_view_temperature" />
+            android:id="@+id/text_view_status" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_species" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_origin" />
 
     </LinearLayout>
 

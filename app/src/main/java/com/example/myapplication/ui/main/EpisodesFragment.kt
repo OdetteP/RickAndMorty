@@ -13,15 +13,13 @@ import com.example.myapplication.R
 
 class EpisodesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: EpisodesViewModel
-
+    private val viewModel by lazy { ViewModelProvider(this).get(EpisodesViewModel::class.java) }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_episodes, container, false)
-        recyclerView = view.findViewById(R.id.city_list_view)
+        val view = inflater.inflate(R.layout.recycler_view, container, false)
+        recyclerView = view.findViewById(R.id.recycler_view_list)
         val episodeAdapter = EpisodeListAdapter()
 
-        viewModel = ViewModelProvider(this).get(EpisodesViewModel::class.java)
         viewModel.episodes.observe(viewLifecycleOwner, Observer { episodeData ->
             episodeAdapter.setData(episodeData)
             recyclerView.layoutManager = LinearLayoutManager(activity)

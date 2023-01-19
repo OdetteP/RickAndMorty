@@ -14,4 +14,11 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+//    @OptIn(ExperimentalCoroutinesApi::class)
+//    @Test
+//    fun testResponseCode() = runTest {
+//        val response = CharacterApi.api.getCharacter()
+//        assert(response.isExecuted)
+//    }
 }

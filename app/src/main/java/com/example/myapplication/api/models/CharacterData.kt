@@ -5,5 +5,5 @@ data class CharacterData (
     val name: String,
     val status: String,
     val species: String,
-//    val origin: ArrayList<String>
+    val origin: Origin
     )

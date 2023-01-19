@@ -45,6 +45,6 @@ class CharactersListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
 }
 
 class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val textViewName: TextView = itemView.findViewById(R.id.text_view_name)
+    val textViewName: TextView = itemView.findViewById(R.id.text_view_id)
 }
 

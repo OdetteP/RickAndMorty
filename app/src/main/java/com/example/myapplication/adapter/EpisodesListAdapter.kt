@@ -50,7 +50,7 @@ class EpisodeListAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
 }
 
 class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val textViewName: TextView = itemView.findViewById(R.id.text_view_name)
+    val textViewName: TextView = itemView.findViewById(R.id.text_view_id)
     val textViewAirDate: TextView = itemView.findViewById(R.id.text_view_air_date)
     val textViewCode: TextView = itemView.findViewById(R.id.text_view_code)
 }

@@ -1,8 +1,12 @@
 package com.example.myapplication.ui.main
 
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Environment
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.api.CharacterService
@@ -12,6 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
+import java.util.jar.Manifest
 
 class CharacterDetailViewModel : ViewModel() {
     val characters = MutableLiveData<CharacterData>()
@@ -28,25 +33,10 @@ class CharacterDetailViewModel : ViewModel() {
             }
             override fun onFailure(call: Call<CharacterData>, t: Throwable) {
                 errorMessage.value = t.message
-
             }
         })
     }
 
-    fun exportCharacterDetails(context: Context, character: CharacterData) {
-        try {
-            val file = File(Environment.getExternalStorageDirectory(), "character_details.txt")
-            val outputStream = FileOutputStream(file)
 
-            val data = "Name: ${character.name}\nStatus: ${character.status}" +
-                    "\nSpecies: ${character.species}\nOrigin: ${character.origin.name}"
-            outputStream.write(data.toByteArray())
-            outputStream.close()
-
-            Toast.makeText(context, "File exported to ${file.absolutePath}", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-        }
-    }
 }
 

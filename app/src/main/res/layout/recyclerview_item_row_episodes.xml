@@ -2,15 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/purple_200">
 
         <TextView
-            android:id="@+id/text_view_id"
+            android:id="@+id/text_view_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:paddingStart="16dp"
-            android:paddingEnd="8dp"/>
+            android:paddingEnd="8dp"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/text_view_air_date"
@@ -18,7 +21,8 @@
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:paddingTop="8dp"
-            android:paddingStart="16dp"/>
+            android:paddingStart="16dp"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/text_view_code"
@@ -27,17 +31,12 @@
             android:textSize="12sp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:paddingStart="16dp"/>
+            android:paddingStart="16dp"
+            android:textColor="@color/white"/>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/end_of_list_text_view"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:paddingStart="16dp"/>
+        app:dividerColor="@color/white"/>
 
 </LinearLayout>

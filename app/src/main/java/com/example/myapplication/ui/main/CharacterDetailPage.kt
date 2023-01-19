@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso
 
 class CharacterDetailPage: Fragment() {
     private val viewModel by lazy { ViewModelProvider(this).get(CharacterDetailViewModel::class.java) }
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? { val view = inflater.inflate(R.layout.fragment_character_details_page, container, false)
         val textViewName: TextView = view.findViewById(R.id.text_view_name)
@@ -24,11 +26,11 @@ class CharacterDetailPage: Fragment() {
         val textViewOrigin: TextView = view.findViewById(R.id.text_view_origin)
 
         viewModel.characters.observe(viewLifecycleOwner, Observer { characterData ->
-            textViewName.text = characterData.name
             Picasso.get().load(characterData.image).into(imagePicture)
-            textViewStatus.text = characterData.status
-            textViewSpecies.text = characterData.species
-            textViewOrigin.text = characterData.origin.name
+            textViewName.text = "Name: ${characterData.name}"
+            textViewStatus.text = "Status: ${characterData.status}"
+            textViewSpecies.text = "Species: ${characterData.species}"
+            textViewOrigin.text = "Origin: ${characterData.origin.name}"
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {

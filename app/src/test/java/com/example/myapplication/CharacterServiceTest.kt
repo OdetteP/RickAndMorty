@@ -1,8 +1,6 @@
 package com.example.myapplication
 
 import com.example.myapplication.api.CharacterService
-import com.example.myapplication.api.models.CharacterData
-import com.google.gson.Gson
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import okhttp3.mockwebserver.MockResponse

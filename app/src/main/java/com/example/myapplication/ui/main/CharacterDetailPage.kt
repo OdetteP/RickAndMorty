@@ -54,8 +54,18 @@ class CharacterDetailPage: Fragment() {
             textViewSpecies.text = "Species: ${characterData.species}"
             textViewOrigin.text = "Origin: ${characterData.origin.name}"
 
+
             exportButton.setOnClickListener {
-                exportCharacterDetails()
+                if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                        context as Activity,
+                        arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        REQUEST_CODE_STORAGE_PERMISSION
+                    )
+                } else{
+                    exportCharacterDetails()
+                }
             }
         })
 
@@ -82,23 +92,32 @@ class CharacterDetailPage: Fragment() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            REQUEST_CODE_STORAGE_PERMISSION -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    exportCharacterDetails()
-                } else {
-                    Toast.makeText(context,
-                        "Storage permission is required to export the file", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            exportCharacterDetails()
+        } else {
+        Toast.makeText(context,
+            "Storage permission is required to export the file", Toast.LENGTH_LONG).show()
     }
+    }
+
+//    @Deprecated("Deprecated in Java")
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        when (requestCode) {
+//            REQUEST_CODE_STORAGE_PERMISSION -> {
+//                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    exportCharacterDetails()
+//                } else {
+//                    Toast.makeText(context,
+//                        "Storage permission is required to export the file", Toast.LENGTH_LONG).show()
+//                }
+//            }
+//        }
+//    }
 }
 
 

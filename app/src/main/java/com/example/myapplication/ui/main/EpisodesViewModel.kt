@@ -26,6 +26,5 @@ class EpisodesViewModel : ViewModel() {
                 errorMessage.value = t.message
             }
         })
-
     }
 }

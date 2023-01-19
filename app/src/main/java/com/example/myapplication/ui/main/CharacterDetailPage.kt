@@ -29,14 +29,15 @@ import java.io.FileOutputStream
 import java.util.jar.Manifest
 
 class CharacterDetailPage: Fragment() {
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(CharacterDetailViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(CharacterDetailViewModel::class.java) }
     private val REQUEST_CODE_STORAGE_PERMISSION = 1
     private val character = MutableLiveData<CharacterData>()
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? { val view = inflater.inflate(R.layout.fragment_character_details_page, container, false)
+        (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val textViewName: TextView = view.findViewById(R.id.text_view_name)
         val imagePicture: ImageView = view.findViewById(R.id.image)
         val textViewStatus: TextView = view.findViewById(R.id.text_view_status)
@@ -54,7 +55,7 @@ class CharacterDetailPage: Fragment() {
             textViewOrigin.text = "Origin: ${characterData.origin.name}"
 
             exportButton.setOnClickListener {
-                exportCharacterDetails( )
+                exportCharacterDetails()
             }
         })
 
@@ -66,15 +67,6 @@ class CharacterDetailPage: Fragment() {
     }
 
     private fun exportCharacterDetails() {
-        if (context?.let { ContextCompat.checkSelfPermission(it, Manifest.permission.WRITE_EXTERNAL_STORAGE) }
-            != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                context as Activity,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                REQUEST_CODE_STORAGE_PERMISSION
-            )
-            return
-        }
         try {
             val file = File(Environment.getExternalStorageDirectory(), "character_details.txt")
             val outputStream = FileOutputStream(file)

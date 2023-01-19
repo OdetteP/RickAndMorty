@@ -32,7 +32,9 @@ class CharactersListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
             bundle.putInt("CHARACTER_ID", character.toInt())
             fragment.arguments = bundle
             val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
-            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+            val transaction = fragmentManager.beginTransaction().replace(R.id.container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
 

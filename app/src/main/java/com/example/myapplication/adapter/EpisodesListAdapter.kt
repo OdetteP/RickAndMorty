@@ -20,7 +20,7 @@ class EpisodeListAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recyclerview_item_row_episodes, parent, false)
+            .inflate(R.layout.recyclerview_item_row_episode, parent, false)
         return EpisodeViewHolder(view)
     }
 
@@ -36,12 +36,12 @@ class EpisodeListAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
             String.format("%td/%tm/%tY", dateObject, dateObject, dateObject)
         holder.textViewCode.text = episode.episode
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {view ->
             val fragment = CharactersIdFragment()
             val bundle = Bundle()
             bundle.putStringArrayList("CHARACTERS", episode.characters)
             fragment.arguments = bundle
-            val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
+            val fragmentManager = (view.context as AppCompatActivity).supportFragmentManager
             val transaction = fragmentManager.beginTransaction().replace(R.id.container, fragment)
             transaction.addToBackStack(null)
             transaction.commit()

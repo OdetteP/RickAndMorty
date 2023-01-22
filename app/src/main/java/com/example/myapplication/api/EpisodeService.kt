@@ -13,6 +13,7 @@ interface EpisodeService {
     companion object {
         val api = Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
+            // Could add this in BuildConfig or String.xml
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(EpisodeService::class.java)

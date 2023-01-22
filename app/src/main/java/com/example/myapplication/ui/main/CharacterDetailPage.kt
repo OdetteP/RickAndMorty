@@ -2,12 +2,10 @@ package com.example.myapplication.ui.main
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -26,11 +24,12 @@ import com.example.myapplication.api.models.CharacterData
 import com.squareup.picasso.Picasso
 import java.io.File
 import java.io.FileOutputStream
-import java.util.jar.Manifest
 
 class CharacterDetailPage: Fragment() {
+
     private val viewModel by lazy { ViewModelProvider(this).get(CharacterDetailViewModel::class.java) }
     private val REQUEST_CODE_STORAGE_PERMISSION = 1
+    private val CHARACTER_ID = "CHARACTER_ID"
     private val character = MutableLiveData<CharacterData>()
 
     @SuppressLint("SetTextI18n")
@@ -45,18 +44,19 @@ class CharacterDetailPage: Fragment() {
         val textViewOrigin: TextView = view.findViewById(R.id.text_view_origin)
         val exportButton: Button = view.findViewById(R.id.button_transport_file)
 
-        arguments?.let { viewModel.refreshData(characterId = it.getInt("CHARACTER_ID")) }
+        arguments?.let { arguments -> viewModel.refreshData(characterId = arguments.getInt(CHARACTER_ID)) }
 
         viewModel.characters.observe(viewLifecycleOwner, Observer { characterData ->
             Picasso.get().load(characterData.image).into(imagePicture)
             textViewName.text = "Name: ${characterData.name}"
+            // This text could come out of the strings.xml file when working with a big project
             textViewStatus.text = "Status: ${characterData.status}"
             textViewSpecies.text = "Species: ${characterData.species}"
             textViewOrigin.text = "Origin: ${characterData.origin.name}"
 
-
             exportButton.setOnClickListener {
-                if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                if (ContextCompat.checkSelfPermission(requireContext(),
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(
                         context as Activity,
@@ -87,37 +87,24 @@ class CharacterDetailPage: Fragment() {
             outputStream.close()
 
             Toast.makeText(context, "File exported to ${file.absolutePath}", Toast.LENGTH_LONG).show()
+            // This text could come out of the strings.xml file when working with a big project
         } catch (e: Exception) {
             Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             exportCharacterDetails()
         } else {
-        Toast.makeText(context,
-            "Storage permission is required to export the file", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                "Storage permission is required to export the file", Toast.LENGTH_LONG
+            // This text could come out of the strings.xml file when working with a big project
+            ).show()
+        }
     }
-    }
-
-//    @Deprecated("Deprecated in Java")
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        when (requestCode) {
-//            REQUEST_CODE_STORAGE_PERMISSION -> {
-//                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    exportCharacterDetails()
-//                } else {
-//                    Toast.makeText(context,
-//                        "Storage permission is required to export the file", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        }
-//    }
 }
 
 

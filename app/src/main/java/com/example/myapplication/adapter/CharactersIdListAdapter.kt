@@ -26,12 +26,12 @@ class CharactersListAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
         val character = characters[position].removePrefix("https://rickandmortyapi.com/api/character/")
         holder.textViewName.text = character
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener { view ->
             val fragment = CharacterDetailPage()
             val bundle = Bundle()
             bundle.putInt("CHARACTER_ID", character.toInt())
             fragment.arguments = bundle
-            val fragmentManager = (it.context as AppCompatActivity).supportFragmentManager
+            val fragmentManager = (view.context as AppCompatActivity).supportFragmentManager
             val transaction = fragmentManager.beginTransaction().replace(R.id.container, fragment)
             transaction.addToBackStack(null)
             transaction.commit()

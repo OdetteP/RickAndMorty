@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.app.NavUtils
 import com.example.myapplication.ui.main.*
 
 class MainActivity : AppCompatActivity() {

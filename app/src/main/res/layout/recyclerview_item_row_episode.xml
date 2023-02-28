@@ -4,7 +4,22 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/purple_200">
+    android:background="@color/light_green"
+    android:paddingTop="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_view_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:paddingEnd="8dp"
+            android:paddingStart="16dp"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/text_view_name"
@@ -15,6 +30,8 @@
             android:paddingEnd="8dp"
             android:textColor="@color/white"/>
 
+    </LinearLayout>
+
         <TextView
             android:id="@+id/text_view_air_date"
             android:layout_width="wrap_content"
@@ -22,16 +39,7 @@
             android:textSize="12sp"
             android:paddingTop="8dp"
             android:paddingStart="16dp"
-            android:textColor="@color/white"/>
-
-        <TextView
-            android:id="@+id/text_view_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="16dp"
+            android:paddingBottom="16dp"
             android:textColor="@color/white"/>
 
     <com.google.android.material.divider.MaterialDivider

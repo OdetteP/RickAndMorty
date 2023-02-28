@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@color/purple_700">
+    android:background="@color/light_green">
 
         <TextView
             android:id="@+id/text_view_id"
@@ -14,6 +14,7 @@
             android:textSize="20sp"
             android:paddingStart="16dp"
             android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
             android:textColor="@color/white"/>
 
     <com.google.android.material.divider.MaterialDivider

@@ -37,7 +37,6 @@ class EpisodesFragment : Fragment() {
                 val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
                 if (lastVisibleItemPosition == recyclerView.adapter?.itemCount?.minus(1)) {
                     Toast.makeText(context, "Reached end of list", Toast.LENGTH_SHORT).show()
-                    // This text could come out of the strings.xml file when working with a big project
                 }
             }
         })

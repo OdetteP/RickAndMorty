@@ -1,5 +1,3 @@
-Assignment project for Luscii. 
-
 The assignment contains 
 
 We need an android app that lists ‘Rick and Morty’ episodes and provides some extra details for each one of them. Use this [API](https://rickandmortyapi.com/documentation/#rest) to retrieve all the needed data.

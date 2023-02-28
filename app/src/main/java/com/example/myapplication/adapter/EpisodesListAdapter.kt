@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.api.models.Episodes
 import com.example.myapplication.R
 import com.example.myapplication.api.models.EpisodeData
 import java.text.SimpleDateFormat
@@ -16,7 +15,7 @@ import java.util.*
 
 class EpisodeListAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
     private val episodes = mutableListOf<EpisodeData>()
-    private val dateFormat = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
+    private val dateFormat = SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -47,11 +46,10 @@ class EpisodeListAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
             transaction.commit()
         }
     }
-
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(episodes: Episodes) {
+    fun setData(episodes: List<EpisodeData>) {
         this.episodes.clear()
-        this.episodes.addAll(episodes.results)
+        this.episodes.addAll(episodes)
         notifyDataSetChanged()
     }
 }

@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import kotlinx.android.synthetic.main.recycler_view.*
+import kotlinx.android.synthetic.main.recycler_view.view.*
 
 class EpisodesFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this).get(EpisodesViewModel::class.java) }
@@ -20,16 +22,15 @@ class EpisodesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? { val view = inflater.inflate(R.layout.recycler_view, container, false)
-        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view_list)
         val episodeAdapter = EpisodeListAdapter()
 
         viewModel.episodes.observe(viewLifecycleOwner, Observer { episodeData ->
-            episodeAdapter.setData(episodeData)
-            recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = episodeAdapter
+            episodeAdapter.setData(episodeData.results)
+            view.recycler_view_list.layoutManager = LinearLayoutManager(activity)
+            view.recycler_view_list.adapter = episodeAdapter
         })
 
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        view.recycler_view_list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager

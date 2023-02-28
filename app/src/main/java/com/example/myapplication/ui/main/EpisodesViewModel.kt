@@ -2,28 +2,23 @@ package com.example.myapplication.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.myapplication.api.EpisodeService
+import com.example.myapplication.api.models.EpisodeData
 import com.example.myapplication.api.models.Episodes
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
 
 class EpisodesViewModel : ViewModel() {
     val episodes = MutableLiveData<Episodes>()
     val errorMessage = MutableLiveData<String>()
 
     fun refreshData() {
-        val call = EpisodeService.api.getEpisode()
-        call.enqueue(object : Callback<Episodes> {
-            override fun onResponse(
-                call: Call<Episodes>,
-                response: Response<Episodes>
-            ) {
-                episodes.value = response.body()
+        viewModelScope.launch {
+            try {
+                episodes.value = EpisodeService.instance.getEpisode().body()
+            } catch (e: Exception) {
+                errorMessage.value = e.localizedMessage
             }
-            override fun onFailure(call: Call<Episodes>, t: Throwable) {
-                errorMessage.value = t.message
-            }
-        })
+        }
     }
 }

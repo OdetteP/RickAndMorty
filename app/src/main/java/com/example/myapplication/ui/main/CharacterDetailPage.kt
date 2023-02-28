@@ -22,6 +22,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.api.models.CharacterData
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_character_details_page.*
+import kotlinx.android.synthetic.main.fragment_character_details_page.view.*
 import java.io.File
 import java.io.FileOutputStream
 
@@ -32,41 +34,32 @@ class CharacterDetailPage: Fragment() {
     private val CHARACTER_ID = "CHARACTER_ID"
     private val character = MutableLiveData<CharacterData>()
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? { val view = inflater.inflate(R.layout.fragment_character_details_page, container, false)
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val textViewName: TextView = view.findViewById(R.id.text_view_name)
-        val imagePicture: ImageView = view.findViewById(R.id.image)
-        val textViewStatus: TextView = view.findViewById(R.id.text_view_status)
-        val textViewSpecies: TextView = view.findViewById(R.id.text_view_species)
-        val textViewOrigin: TextView = view.findViewById(R.id.text_view_origin)
-        val exportButton: Button = view.findViewById(R.id.button_transport_file)
-
         arguments?.let { arguments -> viewModel.refreshData(characterId = arguments.getInt(CHARACTER_ID)) }
 
         viewModel.characters.observe(viewLifecycleOwner, Observer { characterData ->
-            Picasso.get().load(characterData.image).into(imagePicture)
-            textViewName.text = "Name: ${characterData.name}"
-            // This text could come out of the strings.xml file when working with a big project
-            textViewStatus.text = "Status: ${characterData.status}"
-            textViewSpecies.text = "Species: ${characterData.species}"
-            textViewOrigin.text = "Origin: ${characterData.origin.name}"
+            Picasso.get().load(characterData.image).into(image)
+            view.text_view_name.text = "Name: ${characterData.name}"
+            view.text_view_status.text = "Status: ${characterData.status}"
+            view.text_view_species.text = "Species: ${characterData.species}"
+            view.text_view_origin.text = "Origin: ${characterData.origin.name}"
 
-            exportButton.setOnClickListener {
-                if (ContextCompat.checkSelfPermission(requireContext(),
-                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(
-                        context as Activity,
-                        arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        REQUEST_CODE_STORAGE_PERMISSION
-                    )
-                } else{
-                    exportCharacterDetails()
-                }
-            }
+//            button_transport_file.setOnClickListener {
+//                if (ContextCompat.checkSelfPermission(requireContext(),
+//                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                    != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(
+//                        context as Activity,
+//                        arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+//                        REQUEST_CODE_STORAGE_PERMISSION
+//                    )
+//                } else{
+//                    exportCharacterDetails()
+//                }
+//            }
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
@@ -76,35 +69,35 @@ class CharacterDetailPage: Fragment() {
         return view
     }
 
-    private fun exportCharacterDetails() {
-        try {
-            val file = File(Environment.getExternalStorageDirectory(), "character_details.txt")
-            val outputStream = FileOutputStream(file)
-
-            val data = "Name: ${character.value?.name}\nStatus: ${character.value?.status}" +
-                    "\nSpecies: ${character.value?.species}\nOrigin: ${character.value?.origin?.name}"
-            outputStream.write(data.toByteArray())
-            outputStream.close()
-
-            Toast.makeText(context, "File exported to ${file.absolutePath}", Toast.LENGTH_LONG).show()
-            // This text could come out of the strings.xml file when working with a big project
-        } catch (e: Exception) {
-            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            exportCharacterDetails()
-        } else {
-            Toast.makeText(
-                context,
-                "Storage permission is required to export the file", Toast.LENGTH_LONG
-            // This text could come out of the strings.xml file when working with a big project
-            ).show()
-        }
-    }
+//    private fun exportCharacterDetails() {
+//        try {
+//            val file = File(Environment.getExternalStorageDirectory(), "character_details.txt")
+//            val outputStream = FileOutputStream(file)
+//
+//            val data = "Name: ${character.value?.name}\nStatus: ${character.value?.status}" +
+//                    "\nSpecies: ${character.value?.species}\nOrigin: ${character.value?.origin?.name}"
+//            outputStream.write(data.toByteArray())
+//            outputStream.close()
+//
+//            Toast.makeText(context, "File exported to ${file.absolutePath}", Toast.LENGTH_LONG).show()
+//            // This text could come out of the strings.xml file when working with a big project
+//        } catch (e: Exception) {
+//            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+//        }
+//    }
+//
+//    @Deprecated("Deprecated in Java")
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+//        if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            exportCharacterDetails()
+//        } else {
+//            Toast.makeText(
+//                context,
+//                "Storage permission is required to export the file", Toast.LENGTH_LONG
+//            // This text could come out of the strings.xml file when working with a big project
+//            ).show()
+//        }
+//    }
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.api.models
+package com.example.myapplication.data.models
 
 data class CharacterData (
     val image: String,

@@ -18,7 +18,7 @@ import com.example.myapplication.utils.Routes
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity2: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -60,27 +60,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
 }
-
-//class MainActivity : AppCompatActivity() {
-////    override fun onCreate(savedInstanceState: Bundle?) {
-////        super.onCreate(savedInstanceState)
-////        setContentView(R.layout.activity_main)
-////
-////        if (savedInstanceState == null) {
-////            supportFragmentManager.beginTransaction()
-////                .replace(R.id.container, EpisodesFragment())
-////                .commit()
-////        }
-////    }
-////
-////    override fun onSupportNavigateUp(): Boolean {
-////        onBackPressed()
-////        return true
-////    }
-//}
-
-
-
-
 

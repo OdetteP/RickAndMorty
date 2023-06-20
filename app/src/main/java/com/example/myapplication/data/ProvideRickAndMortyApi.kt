@@ -1,15 +1,10 @@
-package com.example.myapplication.api
+package com.example.myapplication.data
 
-import com.example.myapplication.data.models.Episodes
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 
-interface EpisodeService {
-//    @GET("episode")
-//    suspend fun getEpisode(): Response<Episodes>
-//
+class ProvideRickAndMortyApi {
+
 //    companion object {
 //        private val retrofit by lazy {
 //            Retrofit.Builder()
@@ -17,6 +12,6 @@ interface EpisodeService {
 //                .addConverterFactory(GsonConverterFactory.create())
 //                .build()
 //        }
-//        val instance: EpisodeService by lazy { retrofit.create(EpisodeService::class.java) }
+//        val instance: ProvideRickAndMortyApi by lazy { retrofit.create(ProvideRickAndMortyApi::class.java) }
 //    }
 }

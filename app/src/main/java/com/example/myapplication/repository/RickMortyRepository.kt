@@ -1,6 +1,6 @@
 package com.example.myapplication
 
-import com.example.myapplication.data.RickMortyApi
+import com.example.myapplication.data.RickMortyApiService
 import com.example.myapplication.data.respons.CharacterDetailResponse
 import com.example.myapplication.data.respons.CharactersListResponse
 import com.example.myapplication.utils.Resource
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class RickMortyRepository @Inject constructor(
-    private val api: RickMortyApi
+    private val api: RickMortyApiService
 ) {
     suspend fun getCharactersList(page: Int): Resource<CharactersListResponse> =
         withContext(Dispatchers.IO) {

@@ -6,6 +6,5 @@ enum class Routes(val route: String) {
 }
 
 enum class Params(val param: String) {
-    DOMINANT_COLOR("dominantColor"),
     CHARACTER_ID("characterId"),
 }

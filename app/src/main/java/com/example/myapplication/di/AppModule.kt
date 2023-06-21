@@ -1,7 +1,7 @@
 package com.example.myapplication.di
 
 import com.example.myapplication.RickMortyRepository
-import com.example.myapplication.data.RickMortyApi
+import com.example.myapplication.data.RickMortyApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,14 +15,14 @@ import javax.inject.Singleton
 object AppModule {
     @Singleton
     @Provides
-    fun provideRickMortyApi(): RickMortyApi {
+    fun provideRickMortyApi(): RickMortyApiService {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://rickandmortyapi.com/api/")
             .build()
-            .create(RickMortyApi::class.java)
+            .create(RickMortyApiService::class.java)
     }
     @Singleton
     @Provides
-    fun provideRickMortyRepository(api: RickMortyApi) = RickMortyRepository(api = api)
+    fun provideRickMortyRepository(api: RickMortyApiService) = RickMortyRepository(api = api)
 }

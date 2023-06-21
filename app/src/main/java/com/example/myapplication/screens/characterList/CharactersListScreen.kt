@@ -15,7 +15,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -30,9 +29,9 @@ import com.example.myapplication.data.models.CharacterListEntry
 import com.example.myapplication.utils.Routes
 
 @Composable
-fun CharacterListScreen(
+fun CharactersListScreen(
     navController: NavController,
-    viewModel: CharacterListViewModel = hiltViewModel()
+    viewModel: CharactersListViewModel = hiltViewModel()
 ) {
     Surface(
         color = MaterialTheme.colors.background,
@@ -100,7 +99,7 @@ fun SearchBar(
 @Composable
 fun CharacterList(
     navController: NavController,
-    viewModel: CharacterListViewModel = hiltViewModel()
+    viewModel: CharactersListViewModel = hiltViewModel()
 ) {
     val characterList by remember { viewModel.characterList }
     val isEndOfList by remember { viewModel.isEndOfList }
@@ -166,7 +165,7 @@ fun CharacterEntry(
             )
             .clickable {
                 navController.navigate(
-                    "${Routes.CHARACTER_DETAIL_SCREEN.route}/${dominantColor.toArgb()}/${character.characterId}"
+                    "${Routes.CHARACTER_DETAIL_SCREEN.route}/${character.characterId}"
                 )
             }
 

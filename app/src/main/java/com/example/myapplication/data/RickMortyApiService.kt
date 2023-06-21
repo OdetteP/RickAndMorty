@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface RickMortyApi {
+interface RickMortyApiService {
     @GET("character")
     suspend fun getCharactersList(@Query("page") page: Int): CharactersListResponse
 

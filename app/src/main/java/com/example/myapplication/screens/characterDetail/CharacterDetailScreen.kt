@@ -33,7 +33,6 @@ import java.util.*
 
 @Composable
 fun CharacterDetailScreen(
-    dominantColor: Color,
     characterId: Int,
     navController: NavController,
     topPadding: Dp = 30.dp,
@@ -49,7 +48,6 @@ fun CharacterDetailScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(dominantColor)
             .padding(bottom = 16.dp)
 
     ) {

@@ -14,7 +14,6 @@ import javax.inject.Inject
 class RickMortyRepository @Inject constructor(
     private val api: RickMortyApi
 ) {
-
     suspend fun getCharactersList(page: Int): Resource<CharactersListResponse> =
         withContext(Dispatchers.IO) {
             val response = try {

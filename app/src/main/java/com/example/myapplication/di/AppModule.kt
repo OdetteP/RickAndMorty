@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Singleton
     @Provides
     fun provideRickMortyApi(): RickMortyApi {
@@ -24,7 +23,6 @@ object AppModule {
             .build()
             .create(RickMortyApi::class.java)
     }
-
     @Singleton
     @Provides
     fun provideRickMortyRepository(api: RickMortyApi) = RickMortyRepository(api = api)

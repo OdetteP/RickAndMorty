@@ -96,9 +96,6 @@ fun CharacterDetailScreen(
                     Image(
                         painter = rememberImagePainter(it),
                         contentDescription = null,
-//                        requestBuilder = {
-//                            transformations(CircleCropTransformation())
-//                        },
                         modifier = Modifier
                             .size(imageSize)
                             .offset(y = topPadding)
@@ -238,14 +235,12 @@ fun CharacterMetaDataLayout(
             text = "Gender: ${character.gender.capitalize(Locale.ROOT)}",
             color = MaterialTheme.colors.onSurface,
             fontSize = 22.sp,
-//            fontFamily = Roboto,
             textAlign = TextAlign.Center
         )
         Text(
             text = "Origin: ${character.origin.name.capitalize(Locale.ROOT)}",
             color = MaterialTheme.colors.onSurface,
             fontSize = 22.sp,
-//            fontFamily = Roboto,
             textAlign = TextAlign.Center
         )
     }

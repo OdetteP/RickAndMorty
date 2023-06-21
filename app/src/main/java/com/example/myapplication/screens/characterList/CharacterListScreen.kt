@@ -49,15 +49,6 @@ fun CharacterListScreen(
                 model = R.drawable.rick_morty,
                 contentDescription = null,
             )
-
-
-//            Image(
-//                painter = painterResource(id = R.drawable.rick_morty),
-//                contentDescription = "Rick And Morty Logo",
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .align(CenterHorizontally)
-//            )
             SearchBar(
                 hint = "Search a character",
                 modifier = Modifier
@@ -81,7 +72,7 @@ fun SearchBar(
     var text by remember {
         mutableStateOf("")
     }
-    var isHintDisplayed by remember {
+    val isHintDisplayed by remember {
         mutableStateOf(hint != "")
     }
 
@@ -100,9 +91,6 @@ fun SearchBar(
                 .shadow(8.dp, RoundedCornerShape(10.dp))
                 .background(Color.White, RoundedCornerShape(10.dp))
                 .padding(horizontal = 20.dp, vertical = 12.dp)
-//                .onFocusChanged {
-//                    isHintDisplayed = it != FocusState && text.isEmpty()
-//                }
         )
         if (isHintDisplayed) {
             Text(
@@ -164,7 +152,7 @@ fun CharacterEntry(
     viewModel: CharacterListViewModel = hiltViewModel()
 ) {
     val defaultDominantColor = MaterialTheme.colors.surface
-    var dominantColor by remember {
+    val dominantColor by remember {
         mutableStateOf(defaultDominantColor)
     }
 
@@ -194,11 +182,6 @@ fun CharacterEntry(
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(character.imageUrl)
-//                    .target {
-////                        viewModel.calculateDominantColor(it) { color ->
-////                            dominantColor = color
-////                        }
-//                    }
                     .build(),
                 contentDescription = null,
                 modifier = Modifier
@@ -206,36 +189,9 @@ fun CharacterEntry(
                     .align(CenterHorizontally)
                     .clip(RoundedCornerShape(10.dp))
             )
-//            Image(
-//                painter = rememberImagePainter(character.imageUrl),
-////                    request = ImageRequest.Builder(LocalContext.current)
-////                    .data(character.imageUrl)
-////                    .target {
-//////                        viewModel.calculateDominantColor(it) { color ->
-//////                            dominantColor = color
-//////                        }
-////                    }
-////                    .build()
-////                ),
-//                contentDescription = null,
-////                fadeIn = true,
-//                modifier = Modifier
-//                    .size(120.dp)
-//                    .align(CenterHorizontally)
-//                    .clip(RoundedCornerShape(10.dp))
-//
-//            )
-
-//            {
-//                CircularProgressIndicator(
-//                    color = MaterialTheme.colors.primary,
-//                    modifier = Modifier.scale(0.5f)
-//                )
-//            }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = character.characterName,
-//                fontFamily = RobotoCondensed,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()

@@ -89,13 +89,4 @@ class CharacterListViewModel @Inject constructor(
             }
         }
     }
-
-//    fun calculateDominantColor(drawable: Drawable, onFinish: (Color) -> Unit) {
-//        val bitmap = (drawable as BitmapDrawable).bitmap.copy(Bitmap.Config.ARGB_8888, true)
-//        Palette.from(bitmap).generate {
-//            it?.dominantSwatch?.rgb?.let { color ->
-//                onFinish(Color(color))
-//            }
-//        }
-//    }
 }

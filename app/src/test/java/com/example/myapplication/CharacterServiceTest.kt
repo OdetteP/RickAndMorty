@@ -1,16 +1,5 @@
 package com.example.myapplication
 
-import com.example.myapplication.api.CharacterService
-import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertTrue
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

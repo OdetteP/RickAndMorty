@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.RickMortyRepository
 import com.example.myapplication.data.models.CharacterListEntry
-import com.example.myapplication.utils.Constants
 import com.example.myapplication.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -68,7 +67,7 @@ class CharacterListViewModel @Inject constructor(
             when (result) {
                 is Resource.Success -> {
                     isEndOfList.value =
-                        currentPage * Constants.PAGE_SIZE >= result.data!!.info.count
+                        currentPage * 20 >= result.data!!.info.count
                     val entries = result.data.results.mapIndexed { _, response ->
                         CharacterListEntry(
                             characterId = response.id,

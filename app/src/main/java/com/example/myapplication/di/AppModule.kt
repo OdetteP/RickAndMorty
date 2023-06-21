@@ -2,7 +2,6 @@ package com.example.myapplication.di
 
 import com.example.myapplication.RickMortyRepository
 import com.example.myapplication.data.RickMortyApi
-import com.example.myapplication.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

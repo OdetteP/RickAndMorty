@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
-import coil.transform.CircleCropTransformation
 import com.example.myapplication.data.respons.CharacterDetailResponse
 import com.example.myapplication.utils.Resource
 import com.example.myapplication.utils.parseStatusToColor
